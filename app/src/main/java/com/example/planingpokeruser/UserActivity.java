@@ -32,26 +32,4 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-       databaseGroup.addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               groupsList.clear();
-                for(DataSnapshot groupsSnapshot : dataSnapshot.getChildren()){
-                    Groups groups=groupsSnapshot.getValue(Groups.class);
-                    groupsList.add(groups);
-                }
-               GroupsList adapter = new GroupsList(UserActivity.this,groupsList);
-                listViewGroups.setAdapter(adapter);
-           }
-
-           @Override
-           public void onCancelled(@NonNull DatabaseError databaseError) {
-
-           }
-       });
-    }
 }
